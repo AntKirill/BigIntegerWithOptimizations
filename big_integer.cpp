@@ -538,7 +538,7 @@ std::string to_string(big_integer const &a) {
 //returns:
 //div = true: *this / x
 //div = false: *this % x
-static inline big_integer &divWithMod(big_integer &th, int_fast32_t const x, bool div) {
+static inline big_integer &divWithMod(big_integer &th, int32_t const x, bool div) {
     usi carry = 0;
     int64_t xx = (int64_t) x;
     uint32_t y = (usi) std::abs(xx);
@@ -568,17 +568,17 @@ static inline big_integer &divWithMod(big_integer &th, int_fast32_t const x, boo
     return th;
 }
 
-big_integer &big_integer::operator/=(int_fast32_t const x) {
+big_integer &big_integer::operator/=(int32_t const x) {
     check_zerodiv(x);
     return divWithMod(*this, x, true);
 }
 
-big_integer &big_integer::operator%=(int_fast32_t const x) {
+big_integer &big_integer::operator%=(int32_t const x) {
     check_zerodiv(x);
     return divWithMod(*this, x, false);
 }
 
-big_integer &big_integer::operator*=(int_fast32_t const x) {
+big_integer &big_integer::operator*=(int32_t const x) {
     if (*this == 0 || x == 0) {
         *this = 0;
         return *this;

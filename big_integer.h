@@ -16,14 +16,14 @@ static void extracode(big_integer &a);
 static void normalcode(big_integer &a);
 
 static big_integer &abstractLogicOperation(big_integer &a, big_integer b,
-                                           uint_fast32_t (*logicFunc)(uint_fast32_t, uint_fast32_t),
+                                           uint32_t (*logicFunc)(uint32_t, uint32_t),
                                            bool (*check)(bool, bool));
 
 static bool cmpPosSigns(big_integer const &a, big_integer const &b);
 
-static big_integer mult(big_integer const &b, uint_fast32_t x);
+static big_integer mult(big_integer const &b, uint32_t x);
 
-static big_integer &divWithMod(big_integer &th, int_fast32_t const x, bool div);
+static big_integer &divWithMod(big_integer &th, int32_t const x, bool div);
 
 static big_integer &divWithModBig(big_integer &th, big_integer const &rhs, bool div);
 
@@ -118,7 +118,7 @@ struct big_integer {
     friend big_integer &divWithMod(big_integer &th, int32_t const x, bool div);
 
 private:
-    cow_soo_vector<uint32_t> number;
+    std::vector<uint32_t> number;
     bool sign;
 };
 

@@ -628,15 +628,15 @@ namespace
         T b = extract_random_element(v);
 
         T ab = a * b;
-        T c = ab / a;
-        if (c != b) {
-            std::cout << v.size() << std::endl;
-            std::cout << a << std::endl;
-            std::cout << b << std::endl;
-            std::cout << ab << std::endl;
-            std::cout << c << std::endl;
-            if (c != b);
-        }
+//        T c = ab / a;
+//        if (c != b) {
+//            std::cout << v.size() << std::endl;
+//            std::cout << a << std::endl;
+//            std::cout << b << std::endl;
+//            std::cout << ab << std::endl;
+//            std::cout << c << std::endl;
+//            if (c != b);
+//        }
         ASSERT_TRUE(ab / a == b);
         ASSERT_TRUE(ab / b == a);
 
