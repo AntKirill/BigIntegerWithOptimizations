@@ -95,6 +95,7 @@ struct cow_soo_vector {
 //            } else {
 //                ptr_on_vector->resize(s);
 //            }
+            make_writable(ptr_on_vector);
             ptr_on_vector->resize(s);
         }
     }
@@ -200,7 +201,9 @@ private:
         }
     }
 
-    std::vector<T> badjob = std::vector<T>(2);
+    std::vector<T> badjob = std::vector<T>(1);
+
 };
+
 
 #endif //BIGINT_COW_SOO_VECTOR_H
