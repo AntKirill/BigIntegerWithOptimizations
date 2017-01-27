@@ -118,7 +118,7 @@ struct big_integer {
     friend big_integer &divWithMod(big_integer &th, int32_t const x, bool div);
 
 private:
-    std::vector<uint32_t> number;
+    cow_soo_vector<uint32_t> number;
     bool sign;
 };
 

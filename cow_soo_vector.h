@@ -6,9 +6,9 @@
 
 template <typename T>
 struct cow_soo_vector {
-    cow_soo_vector() : ptr_on_vector(std::make_shared<std::vector<T>>()) {}
+    cow_soo_vector() {}
 
-    cow_soo_vector(cow_soo_vector<T> &rhs) : ptr_on_vector(rhs.ptr_on_vector), number(rhs.number) {}
+    cow_soo_vector(cow_soo_vector<T> &rhs) : ptr_on_vector(rhs.ptr_on_vector), number(rhs.number), tag(rhs.tag) {}
 
     void operator=(const cow_soo_vector<T> &rhs) {
         ptr_on_vector = rhs.ptr_on_vector;
@@ -85,15 +85,17 @@ struct cow_soo_vector {
                 tag = BIG;
                 ptr_on_vector = std::make_shared<std::vector<T>>();
                 ptr_on_vector->resize(s);
+                (*ptr_on_vector)[0] = number;
             }
         } else if (tag == BIG) {
-            if (s == 1) {
-                clear();
-                tag = SMALL;
-                number = 0;
-            } else {
-                ptr_on_vector->resize(s);
-            }
+//            if (s == 1) {
+//                clear();
+//                tag = SMALL;
+//                number = 0;
+//            } else {
+//                ptr_on_vector->resize(s);
+//            }
+            ptr_on_vector->resize(s);
         }
     }
 
@@ -104,21 +106,36 @@ struct cow_soo_vector {
     }
 
     typename std::vector<T>::iterator begin() {
-        //if (tag == EMPTY || tag == SMALL) return nullptr;
+        if (tag == SMALL) {
+            badjob[0] = number;
+            return badjob.begin();
+        };
         make_writable(ptr_on_vector);
         return ptr_on_vector->begin();
     }
 
     typename std::vector<T>::iterator begin() const {
+        if (tag == SMALL) {
+            badjob[0] = number;
+            return badjob.begin();
+        };
         return ptr_on_vector->begin();
     }
 
     typename std::vector<T>::iterator end() {
+        if (tag == SMALL) {
+            badjob[0] = number;
+            return badjob.end();
+        };
         make_writable(ptr_on_vector);
         return ptr_on_vector->end();
     }
 
     typename std::vector<T>::iterator end() const {
+        if (tag == SMALL) {
+            badjob[0] = number;
+            return badjob.end();
+        };
         return ptr_on_vector->end();
     }
 
@@ -182,6 +199,8 @@ private:
             ptr = std::make_shared<std::vector<T>>(*ptr);
         }
     }
+
+    std::vector<T> badjob = std::vector<T>(2);
 };
 
 #endif //BIGINT_COW_SOO_VECTOR_H
