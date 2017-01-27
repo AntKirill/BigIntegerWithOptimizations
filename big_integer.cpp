@@ -44,7 +44,7 @@ static void check_zerodiv(big_integer const &a) {
     if (a == 0) throw std::string("Devising by zero\n");
 }
 
-static void check_zerodiv(int_fast32_t a) {
+static void check_zerodiv(int32_t a) {
     if (a == 0) throw std::string("Devising by zero\n");
 }
 
@@ -255,7 +255,7 @@ big_integer &big_integer::operator*=(big_integer const &rhs) {
 //div = true : th / rhs
 //div = false : rh % rhs
 static big_integer &divWithModBig(big_integer &th, big_integer const &rhs, bool div) {
-    if (rhs.number.size() == 1 && (rhs.number[0] <= usi(std::numeric_limits<int_fast32_t>::max()))) {
+    if (rhs.number.size() == 1 && (rhs.number[0] <= usi(std::numeric_limits<int32_t>::max()))) {
         bool saveRhsSign = true;
         if (div) {
             th /= rhs.number[0];
@@ -429,7 +429,7 @@ big_integer operator*(big_integer a, big_integer const &b) {
     return a *= b;
 }
 
-big_integer operator*(big_integer a, int_fast32_t const x) {
+big_integer operator*(big_integer a, int32_t const x) {
     return a *= x;
 }
 
@@ -437,7 +437,7 @@ big_integer operator/(big_integer a, big_integer const &b) {
     return a /= b;
 }
 
-big_integer operator/(big_integer a, int_fast32_t const x) {
+big_integer operator/(big_integer a, int32_t const x) {
     return a /= x;}
 
 big_integer operator%(big_integer a, big_integer const &b) {
@@ -445,7 +445,7 @@ big_integer operator%(big_integer a, big_integer const &b) {
     return a;
 }
 
-big_integer operator%(big_integer a, int_fast32_t const x) {
+big_integer operator%(big_integer a, int32_t const x) {
     a %= x;
     return a;
 }
