@@ -42,7 +42,7 @@ struct cow_soo_vector {
         else return (*ptr_on_vector)[i];
     }
 
-    void push_back(const T x) {
+    inline void push_back(const T x) {
         if (tag == EMPTY) {
             number = x;
             tag = SMALL;
@@ -100,7 +100,7 @@ struct cow_soo_vector {
         }
     }
 
-    size_t size() const {
+    inline size_t size() const {
         if (tag == EMPTY) return 0;
         else if (tag == SMALL) return 1;
         else return ptr_on_vector->size();
@@ -195,7 +195,7 @@ private:
 
     T number;
 
-    void make_writable(std::shared_ptr<std::vector<T>> &ptr) {
+    inline void make_writable(std::shared_ptr<std::vector<T>> &ptr) {
         if (tag == BIG && !ptr.unique()) {
             ptr = std::make_shared<std::vector<T>>(*ptr);
         }
